@@ -82,7 +82,7 @@ class StreamsSync(commands.Cog):
 
         for stream in data:
             record = StreamRecord(**stream)
-            records[record.username] = record
+            records[record.url] = record
 
         return records
 
@@ -99,15 +99,14 @@ class StreamsSync(commands.Cog):
             author_name = msg.embeds[0].author.name
             if not author_name.endswith(f" {AUTHOR_SUFFIX}"):
                 continue
-
-            twitch_name = author_name[: -len(AUTHOR_SUFFIX) - 1]
+            author_url = msg.embeds[0].author.url
 
             # If we have multiple messages from one streamer just garbage collect
             # one of them.
-            if twitch_name in messages:
-                await messages[twitch_name].delete()
+            if author_url in messages:
+                await messages[author_url].delete()
 
-            messages[twitch_name] = msg
+            messages[author_url] = msg
 
         return messages
 
