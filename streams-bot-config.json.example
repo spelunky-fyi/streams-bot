@@ -1,0 +1,6 @@
+{
+    "channel": 123456789123456789,
+    "api-path": "url to api that returns streamers",
+    "api-key": "key used to auth with api",
+    "discord-token": "auth token to login with both"
+}
