@@ -117,11 +117,19 @@ class StreamsSync(commands.Cog):
             fields[field.name] = field.value
 
         if record.game.strip() != fields.get("Game"):
-            logging.info("Game changed. Before: %s, After: %s", repr(fields.get("Game")), repr(record.game))
+            logging.info(
+                "Game changed. Before: %s, After: %s",
+                repr(fields.get("Game")),
+                repr(record.game),
+            )
             return True
 
         if record.status.strip() != fields.get("Stream Title"):
-            logging.info("Status changed. Before: %s, After: %s", repr(fields.get("Stream Title")), repr(record.status))
+            logging.info(
+                "Status changed. Before: %s, After: %s",
+                repr(fields.get("Stream Title")),
+                repr(record.status),
+            )
             return True
 
         return False
