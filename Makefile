@@ -2,7 +2,7 @@ docker-build:
 	docker build -t streams-bot:docker .
 
 docker-run:
-	docker run --name=streams-botkeeper.service --rm -it streams-bot:docker
+	docker run --name=streams-bot.service --rm -it streams-bot:docker
 
 docker-bash:
-	docker exec -it streams-botkeeper.service /bin/bash
+	docker exec -it streams-bot.service /bin/bash
