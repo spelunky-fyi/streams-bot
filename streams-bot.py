@@ -147,6 +147,10 @@ class StreamsSync(commands.Cog):
             return
 
         records = await self.get_streams_from_api()
+        if records is None:
+            logging.warning("Failed to get streams from API")
+            return
+
         messages = await self.get_stream_messages(channel)
 
         for twitch_name, record in records.items():
