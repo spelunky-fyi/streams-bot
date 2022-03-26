@@ -10,6 +10,7 @@ from typing import Dict, Optional
 
 import aiohttp
 import discord
+import discord.errors
 from discord.ext import commands, tasks
 
 
@@ -151,7 +152,11 @@ class StreamsSync(commands.Cog):
             logging.warning("Failed to get streams from API")
             return
 
-        messages = await self.get_stream_messages(channel)
+        try:
+            messages = await self.get_stream_messages(channel)
+        except discord.errors.HTTPException:
+            logging.exception("Failed to get stream messages...")
+            return
 
         for twitch_name, record in records.items():
             if twitch_name not in messages:
